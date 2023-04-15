@@ -39,6 +39,7 @@ const textareaValue = ref('');
 let utterance = new SpeechSynthesisUtterance();
 
 function textToSound(){
+  console.log(utterance)
   utterance.text = textareaValue.value.value;
   utterance.lang = 'en-US';
   speechSynthesis.speak(utterance);
