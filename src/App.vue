@@ -21,9 +21,9 @@
 
       <v-card-actions class="px-6">
         <v-btn icon="mdi-play" variant="outlined" @click="textToSound"></v-btn>
-        <v-btn icon="mdi-pause" variant="outlined"></v-btn>
-        <v-btn icon="mdi-play-pause" variant="outlined"></v-btn>
-        <v-btn icon="mdi-stop" variant="outlined"></v-btn>
+        <v-btn icon="mdi-pause" variant="outlined" @click="pauseSpeech"></v-btn>
+        <v-btn icon="mdi-play-pause" variant="outlined" @click="resumeSpeech"></v-btn>
+        <v-btn icon="mdi-stop" variant="outlined" @click="stopSpeech"></v-btn>
       </v-card-actions>
     </v-card>  
   </div>
@@ -36,10 +36,27 @@ const arr = ['Volume', 'Rate', 'Pitch'];
 
 const textareaValue = ref('');
 
+let utterance = new SpeechSynthesisUtterance();
+
 function textToSound(){
-  let utterance = new SpeechSynthesisUtterance(textareaValue.value.value);
+  utterance.text = textareaValue.value.value;
+  utterance.lang = 'en-US';
   speechSynthesis.speak(utterance);
 }
+
+function pauseSpeech(){
+  speechSynthesis.pause();
+}
+
+function resumeSpeech(){
+  speechSynthesis.resume();
+}
+
+function stopSpeech(){
+  speechSynthesis.cancel();
+}
+
+
 </script>
 
 
