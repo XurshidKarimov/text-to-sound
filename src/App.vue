@@ -57,6 +57,13 @@ function stopSpeech(){
   speechSynthesis.cancel();
 }
 
+const recognition = new webkitSpeechRecognition();
+recognition.onresult = function(event) {
+  console.log(event.results[0][0].transcript);
+};
+// recognition.start();
+
+
 
 </script>
 
